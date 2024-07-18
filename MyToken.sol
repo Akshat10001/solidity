@@ -1,16 +1,8 @@
-/**
-   * @title ContractName
-   * @dev ContractDescription
-   * @custom:dev-run-script file_path
-   */
-  contract ContractName {}
-  
-// SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
 contract MyToken {
     string public tokenName = "Akshat";
-    string public tokenAbbrv = "XYZ";
+    string public tokenAbbrv = "Ak";
     uint256 public totalSupply = 0;
 
     mapping(address => uint256) public balances;
@@ -24,6 +16,9 @@ contract MyToken {
         if (balances[_address] >= _value) {
             totalSupply -= _value;
             balances[_address] -= _value;
-        } 
+        } else {
+            revert("Insufficient balance to burn");
+        }
     }
 }
+
